@@ -1,0 +1,43 @@
+/* Reset margin and padding */
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+/* Style for the body to cover the entire screen */
+body, html {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    overflow: hidden;/* Disable scrolling */
+    padding-bottom: 2%;
+    margin-top: 10px;
+    margin-left: 202px;
+    margin-right: -263px;
+}
+/* Full-screen video styling */
+.background-video {
+position: absolute; /* Allows positioning of video to cover the entire background */
+top: 0;
+left: 0;
+width: 100vw; /* Full width of the viewport */
+height: 100vh; /* Full height of the viewport */
+object-fit: cover; /* Ensures video covers the whole viewport without distortion */
+z-index: -1; /* Places video behind the text box */
+}
+/* Centered text box styling */
+.text-box {
+    background-color: #818EA4; /* Background color for text box */
+    color: #FCFCFC; /* Text color */
+    font-weight: bold; /* Bold text */
+    padding: 20px; /* Padding inside the text box */
+    border-radius: 10px; /* Rounded corners */
+    text-align: center; /* Center-align text within the box */
+    max-width: 80%; /* Limits the width of the text box */
+    margin-top: -58px;
+    margin-right: 117px;
+    bottom: 0px;
+    left: 0px;
+    margin-left: -6px;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, sans-serif;
