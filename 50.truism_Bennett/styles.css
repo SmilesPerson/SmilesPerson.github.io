@@ -1,0 +1,732 @@
+<!-- File: index.html -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fullscreen Video with Tony Soprano Quote</title>
+  <!-- Link to the external stylesheet named "styles.css" in the same project root -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!--
+    Fullscreen video element.
+    - The video file should be placed inside a folder named "videos" relative to this HTML file.
+    - Replace "video.mp4" with your actual filename if different.
+    - muted + autoplay + playsinline are used so the video will autoplay on most browsers.
+    - loop keeps the video repeating.
+  -->
+  <video class="bg-video" src="videos/video.mp4" autoplay muted loop playsinline></video>
+
+  <!-- Overlay container that centers the quote box in the middle of the screen -->
+  <div class="overlay">
+    <!--
+      Quote box:
+      - Yellow background, black bold text as requested.
+      - The quote below is attributed to Tony Soprano (a fictional character).
+      - You can edit the text if you want a different quote or attribution.
+    -->
+    <div class="quote-box" role="note" aria-label="Tony Soprano quote">
+      "Those who want respect, give respect." — Tony Soprano
+    </div>
+  </div>
+
+  <!--
+    Optional: small script to ensure the video stays sized correctly on orientation change.
+    Not strictly necessary, but helpful on some mobile devices.
+  -->
+  <script>
+    // Recompute sizing on orientation change to keep object-fit behavior consistent.
+    window.addEventListener('orientationchange', () => {
+      document.querySelector('.bg-video').style.display = 'none';
+      // Trigger reflow
+      void document.querySelector('.bg-video').offsetHeight;
+      document.querySelector('.bg-video').style.display = '';
+    });
+  </script>
+</body<!-- File: index.html -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fullscreen Video with Tony Soprano Quote</title>
+  <!-- Link to the external stylesheet named "styles.css" in the same project root -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!--
+    Fullscreen video element.
+    - The video file should be placed inside a folder named "videos" relative to this HTML file.
+    - Replace "video.mp4" with your actual filename if different.
+    - muted + autoplay + playsinline are used so the video will autoplay on most browsers.
+    - loop keeps the video repeating.
+  -->
+  <video class="bg-video" src="videos/video.mp4" autoplay muted loop playsinline></video>
+
+  <!-- Overlay container that centers the quote box in the middle of the screen -->
+  <div class="overlay">
+    <!--
+      Quote box:
+      - Yellow background, black bold text as requested.
+      - The quote below is attributed to Tony Soprano (a fictional character).
+      - You can edit the text if you want a different quote or attribution.
+    -->
+    <div class="quote-box" role="note" aria-label="Tony Soprano quote">
+      "Those who want respect, give respect." — Tony Soprano
+    </div>
+  </div>
+
+  <!--
+    Optional: small script to ensure the video stays sized correctly on orientation change.
+    Not strictly necessary, but helpful on some mobile devices.
+  -->
+  <script>
+    // Recompute sizing on orientation change to keep object-fit behavior consistent.
+    window.addEventListener('orientationchange', () => {
+      document.querySelector('.bg-video').style.display = 'none';
+      // Trigger reflow
+      void document.querySelector('.bg-video').offsetHeight;
+      document.querySelector('.bg-video').style.display = '';
+    });
+  </script>
+</body>
+</html>
+
+/* ------------------------------------------------------------------ */
+/* File: styles.css                                                   */
+/* ------------------------------------------------------------------ */
+/*
+  Styles for the fullscreen video page.
+  - This file is intentionally separate and named "styles.css" as requested.
+  - All layout is done with CSS so the video fills the viewport and the
+    quote box sits in the exact center.
+*/
+
+/* Reset body margins and ensure full-viewport sizing */
+html, body {
+  height: 100%;
+  margin: 0; /* remove default margin so the video fills edge-to-edge */
+}
+
+/* Container used to layer the video and the overlay */
+body {
+    font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: #D61A1E; /* fallback color while the video loads */
+    padding-left: 0px;
+    -webkit-box-shadow: 0px 0px #DF4043;
+    box-shadow: 0px 0px #DF4043;
+    background-image: -webkit-linear-gradient(270deg,rgba(255,255,255,1.00) 0%,rgba(159,61,61,1.00) 100%);
+    background-image: -moz-linear-gradient(270deg,rgba(255,255,255,1.00) 0%,rgba(159,61,61,1.00) 100%);
+    background-image: -o-linear-gradient(270deg,rgba(255,255,255,1.00) 0%,rgba(159,61,61,1.00) 100%);
+    background-image: linear-gradient(180deg,rgba(255,255,255,1.00) 0%,rgba(159,61,61,1.00) 100%);
+}
+
+/* Fullscreen background video styling */
+.bg-video {
+  position: fixed;        /* keep the video fixed behind the content */
+  inset: 0;               /* shorthand for top:0; right:0; bottom:0; left:0; */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;      /* crop/cover behavior so the video fills the viewport */
+  z-index: -1;            /* place video behind the overlay */
+  /* Improve rendering on some devices */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* Overlay that covers the viewport and centers its children */
+.overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;                 /* use flexbox to center content */
+  align-items: center;           /* vertical centering */
+  justify-content: center;       /* horizontal centering */
+  pointer-events: none;          /* allow clicks to pass through if desired */
+}
+
+/* The visible text box centered on screen */
+.quote-box {
+    /* Make the box respond to pointer events so users can select text */
+    pointer-events: auto;
+    background-color: #001EFF;          /* yellow background */
+    color: #34346C;                /* black text */
+    font-weight: 700;            /* bold letters */
+    /* Padding and sizing */
+    padding: 1rem 1.5rem;        /* comfortable padding inside the box */
+    max-width: 90%;              /* don't overflow small screens */
+    box-sizing: border-box;
+    /* Rounded corners and subtle shadow for better contrast */
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+    /* Make text a little larger for readability */
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    text-align: center;
+    text-shadow: 0px 0px #000000;
+}
+
+/* Provide a slightly different layout on very small screens */
+@media (max-width: 420px) {
+  .quote-box {
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+  }
+}
+<!-- File: index.html -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fullscreen Video with Tony Soprano Quote</title>
+  <!-- Link to the external stylesheet named "styles.css" in the same project root -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!--
+    Fullscreen video element.
+    - The video file should be placed inside a folder named "videos" relative to this HTML file.
+    - Replace "video.mp4" with your actual filename if different.
+    - muted + autoplay + playsinline are used so the video will autoplay on most browsers.
+    - loop keeps the video repeating.
+  -->
+  <video class="bg-video" src="videos/video.mp4" autoplay muted loop playsinline></video>
+
+  <!-- Overlay container that centers the quote box in the middle of the screen -->
+  <div class="overlay">
+    <!--
+      Quote box:
+      - Yellow background, black bold text as requested.
+      - The quote below is attributed to Tony Soprano (a fictional character).
+      - You can edit the text if you want a different quote or attribution.
+    -->
+    <div class="quote-box" role="note" aria-label="Tony Soprano quote">
+      "Those who want respect, give respect." — Tony Soprano
+    </div>
+  </div>
+
+  <!--
+    Optional: small script to ensure the video stays sized correctly on orientation change.
+    Not strictly necessary, but helpful on some mobile devices.
+  -->
+  <script>
+    // Recompute sizing on orientation change to keep object-fit behavior consistent.
+    window.addEventListener('orientationchange', () => {
+      document.querySelector('.bg-video').style.display = 'none';
+      // Trigger reflow
+      void document.querySelector('.bg-video').offsetHeight;
+      document.querySelector('.bg-video').style.display = '';
+    });
+  </script>
+</body>
+</html>
+
+/* ------------------------------------------------------------------ */
+/* File: styles.css                                                   */
+/* ------------------------------------------------------------------ */
+/*
+  Styles for the fullscreen video page.
+  - This file is intentionally separate and named "styles.css" as requested.
+  - All layout is done with CSS so the video fills the viewport and the
+    quote box sits in the exact center.
+*/
+
+/* Reset body margins and ensure full-viewport sizing */
+html, body {
+  height: 100%;
+  margin: 0; /* remove default margin so the video fills edge-to-edge */
+}
+
+/* Container used to layer the video and the overlay */
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: black; /* fallback color while the video loads */
+}
+
+/* Fullscreen background video styling */
+.bg-video {
+  position: fixed;        /* keep the video fixed behind the content */
+  inset: 0;               /* shorthand for top:0; right:0; bottom:0; left:0; */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;      /* crop/cover behavior so the video fills the viewport */
+  z-index: -1;            /* place video behind the overlay */
+  /* Improve rendering on some devices */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* Overlay that covers the viewport and centers its children */
+.overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;                 /* use flexbox to center content */
+  align-items: center;           /* vertical centering */
+  justify-content: center;       /* horizontal centering */
+  pointer-events: none;          /* allow clicks to pass through if desired */
+}
+
+/* The visible text box centered on screen */
+.quote-box {
+    /* Make the box respond to pointer events so users can select text */
+    pointer-events: auto;
+    background-color: #4C4977;          /* yellow background */
+    color: black;                /* black text */
+    font-weight: 700;            /* bold letters */
+    /* Padding and sizing */
+    padding: 1rem 1.5rem;        /* comfortable padding inside the box */
+    max-width: 90%;              /* don't overflow small screens */
+    box-sizing: border-box;
+    /* Rounded corners and subtle shadow for better contrast */
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+    /* Make text a little larger for readability */
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    text-align: center;
+    margin-top: 109px;
+    margin-right: -502px;
+    margin-bottom: -512px;
+}
+
+/* Provide a slightly different layout on very small screens */
+@media (max-width: 420px) {
+  .quote-box {
+    font-size: 1rem;
+    background-color: #2D30C7;
+    right: 0px;
+    left: 0px;
+    bottom: 0px;
+    top: 346px;
+  }
+}
+<!-- File: index.html -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fullscreen Video with Tony Soprano Quote</title>
+  <!-- Link to the external stylesheet named "styles.css" in the same project root -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!--
+    Fullscreen video element.
+    - The video file should be placed inside a folder named "videos" relative to this HTML file.
+    - Replace "video.mp4" with your actual filename if different.
+    - muted + autoplay + playsinline are used so the video will autoplay on most browsers.
+    - loop keeps the video repeating.
+  -->
+  <video class="bg-video" src="videos/video.mp4" autoplay muted loop playsinline></video>
+
+  <!-- Overlay container that centers the quote box in the middle of the screen -->
+  <div class="overlay">
+    <!--
+      Quote box:
+      - Yellow background, black bold text as requested.
+      - The quote below is attributed to Tony Soprano (a fictional character).
+      - You can edit the text if you want a different quote or attribution.
+    -->
+    <div class="quote-box" role="note" aria-label="Tony Soprano quote">
+      "Those who want respect, give respect." — Tony Soprano
+    </div>
+  </div>
+
+  <!--
+    Optional: small script to ensure the video stays sized correctly on orientation change.
+    Not strictly necessary, but helpful on some mobile devices.
+  -->
+  <script>
+    // Recompute sizing on orientation change to keep object-fit behavior consistent.
+    window.addEventListener('orientationchange', () => {
+      document.querySelector('.bg-video').style.display = 'none';
+      // Trigger reflow
+      void document.querySelector('.bg-video').offsetHeight;
+      document.querySelector('.bg-video').style.display = '';
+    });
+  </script>
+</body>
+</html>
+
+/* ------------------------------------------------------------------ */
+/* File: styles.css                                                   */
+/* ------------------------------------------------------------------ */
+/*
+  Styles for the fullscreen video page.
+  - This file is intentionally separate and named "styles.css" as requested.
+  - All layout is done with CSS so the video fills the viewport and the
+    quote box sits in the exact center.
+*/
+
+/* Reset body margins and ensure full-viewport sizing */
+html, body {
+  height: 100%;
+  margin: 0; /* remove default margin so the video fills edge-to-edge */
+}
+
+/* Container used to layer the video and the overlay */
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: black; /* fallback color while the video loads */
+}
+
+/* Fullscreen background video styling */
+.bg-video {
+  position: fixed;        /* keep the video fixed behind the content */
+  inset: 0;               /* shorthand for top:0; right:0; bottom:0; left:0; */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;      /* crop/cover behavior so the video fills the viewport */
+  z-index: -1;            /* place video behind the overlay */
+  /* Improve rendering on some devices */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* Overlay that covers the viewport and centers its children */
+.overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;                 /* use flexbox to center content */
+  align-items: center;           /* vertical centering */
+  justify-content: center;       /* horizontal centering */
+  pointer-events: none;          /* allow clicks to pass through if desired */
+}
+
+/* The visible text box centered on screen */
+.quote-box {
+    /* Make the box respond to pointer events so users can select text */
+    pointer-events: auto;
+    background-color: #2538C1;          /* yellow background */
+    color: black;                /* black text */
+    font-weight: 700;            /* bold letters */
+    /* Padding and sizing */
+    padding: 1rem 1.5rem;        /* comfortable padding inside the box */
+    max-width: 90%;              /* don't overflow small screens */
+    box-sizing: border-box;
+    /* Rounded corners and subtle shadow for better contrast */
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+    /* Make text a little larger for readability */
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    text-align: center;
+    top: 47px;
+}
+
+/* Provide a slightly different layout on very small screens */
+@media (max-width: 420px) {
+  .quote-box {
+    padding-top: 94rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    padding-bottom: 0.8rem;
+    font-size: 1rem;
+    margin-top: -4px;
+  }
+}
+<!-- File: index.html -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fullscreen Video with Tony Soprano Quote</title>
+  <!-- Link to the external stylesheet named "styles.css" in the same project root -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!--
+    Fullscreen video element.
+    - The video file should be placed inside a folder named "videos" relative to this HTML file.
+    - Replace "video.mp4" with your actual filename if different.
+    - muted + autoplay + playsinline are used so the video will autoplay on most browsers.
+    - loop keeps the video repeating.
+  -->
+  <video class="bg-video" src="videos/video.mp4" autoplay muted loop playsinline></video>
+
+  <!-- Overlay container that centers the quote box in the middle of the screen -->
+  <div class="overlay">
+    <!--
+      Quote box:
+      - Yellow background, black bold text as requested.
+      - The quote below is attributed to Tony Soprano (a fictional character).
+      - You can edit the text if you want a different quote or attribution.
+    -->
+    <div class="quote-box" role="note" aria-label="Tony Soprano quote">
+      "Those who want respect, give respect." — Tony Soprano
+    </div>
+  </div>
+
+  <!--
+    Optional: small script to ensure the video stays sized correctly on orientation change.
+    Not strictly necessary, but helpful on some mobile devices.
+  -->
+  <script>
+    // Recompute sizing on orientation change to keep object-fit behavior consistent.
+    window.addEventListener('orientationchange', () => {
+      document.querySelector('.bg-video').style.display = 'none';
+      // Trigger reflow
+      void document.querySelector('.bg-video').offsetHeight;
+      document.querySelector('.bg-video').style.display = '';
+    });
+  </script>
+</body>
+</html>
+
+/* ------------------------------------------------------------------ */
+/* File: styles.css                                                   */
+/* ------------------------------------------------------------------ */
+/*
+  Styles for the fullscreen video page.
+  - This file is intentionally separate and named "styles.css" as requested.
+  - All layout is done with CSS so the video fills the viewport and the
+    quote box sits in the exact center.
+*/
+
+/* Reset body margins and ensure full-viewport sizing */
+html, body {
+  height: 100%;
+  margin: 0; /* remove default margin so the video fills edge-to-edge */
+}
+
+/* Container used to layer the video and the overlay */
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: black; /* fallback color while the video loads */
+}
+
+/* Fullscreen background video styling */
+.bg-video {
+  position: fixed;        /* keep the video fixed behind the content */
+  inset: 0;               /* shorthand for top:0; right:0; bottom:0; left:0; */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;      /* crop/cover behavior so the video fills the viewport */
+  z-index: -1;            /* place video behind the overlay */
+  /* Improve rendering on some devices */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* Overlay that covers the viewport and centers its children */
+.overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;                 /* use flexbox to center content */
+  align-items: center;           /* vertical centering */
+  justify-content: center;       /* horizontal centering */
+  pointer-events: none;          /* allow clicks to pass through if desired */
+}
+
+/* The visible text box centered on screen */
+.quote-box {
+    /* Make the box respond to pointer events so users can select text */
+    pointer-events: auto;
+    background-color: #5E588F;          /* yellow background */
+    color: black;                /* black text */
+    font-weight: 700;            /* bold letters */
+    /* Padding and sizing */
+    padding: 1rem 1.5rem;        /* comfortable padding inside the box */
+    max-width: 90%;              /* don't overflow small screens */
+    box-sizing: border-box;
+    /* Rounded corners and subtle shadow for better contrast */
+    border-radius: 180px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+    /* Make text a little larger for readability */
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    text-align: center;
+}
+
+/* Provide a slightly different layout on very small screens */
+@media (max-width: 420px) {
+  .quote-box {
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    margin-top: -17px;
+  }
+}
+<!-- File: index.html -->
+<title>Fullscreen Video with Tony Soprano Quote</title>
+<!-- Link to the external stylesheet named "styles.css" in the same project root -->
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<!--
+Fullscreen video element.
+- The video file should be placed inside a folder named "videos" relative to this HTML file.
+- Replace "video.mp4" with your actual filename if different.
+- muted + autoplay + playsinline are used so the video will autoplay on most browsers.
+- loop keeps the video repeating.
+-->
+<video class="bg-video" src="videos/video.mp4" autoplay muted loop playsinline></video>
+
+
+<!-- Overlay container that centers the quote box in the middle of the screen -->
+<div class="overlay">
+<!--
+Quote box:
+- Yellow background, black bold text as requested.
+- The quote below is attributed to Tony Soprano (a fictional character).
+- You can edit the text if you want a different quote or attribution.
+-->
+<div class="quote-box" role="note" aria-label="Tony Soprano quote">
+"Those who want respect, give respect." — Tony Soprano
+</div>
+</div>
+
+
+<!--
+Optional: small script to ensure the video stays sized correctly on orientation change.
+Not strictly necessary, but helpful on some mobile devices.
+-->
+<script>
+// Recompute sizing on orientation change to keep object-fit behavior consistent.
+window.addEventListener('orientationchange', () => {
+document.querySelector('.bg-video').style.display = 'none';
+// Trigger reflow
+void document.querySelector('.bg-video').offsetHeight;
+document.querySelector('.bg-video').style.display = '';
+});
+</script>
+</body>
+</html><!-- File: index.html -->
+<title>Fullscreen Video with Tony Soprano Quote</title>
+<!-- Link to the external stylesheet named "styles.css" in the same project root -->
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<!--
+Fullscreen video element.
+- The video file should be placed inside a folder named "videos" relative to this HTML file.
+- Replace "video.mp4" with your actual filename if different.
+- muted + autoplay + playsinline are used so the video will autoplay on most browsers.
+- loop keeps the video repeating.
+-->
+<video class="bg-video" src="videos/video.mp4" autoplay muted loop playsinline></video>
+
+
+<!-- Overlay container that centers the quote box in the middle of the screen -->
+<div class="overlay">
+<!--
+Quote box:
+- Yellow background, black bold text as requested.
+- The quote below is attributed to Tony Soprano (a fictional character).
+- You can edit the text if you want a different quote or attribution.
+-->
+<div class="quote-box" role="note" aria-label="Tony Soprano quote">
+"Those who want respect, give respect." — Tony Soprano
+</div>
+</div>
+
+
+<!--
+Optional: small script to ensure the video stays sized correctly on orientation change.
+Not strictly necessary, but helpful on some mobile devices.
+-->
+<script>
+// Recompute sizing on orientation change to keep object-fit behavior consistent.
+window.addEventListener('orientationchange', () => {
+document.querySelector('.bg-video').style.display = 'none';
+// Trigger reflow
+void document.querySelector('.bg-video').offsetHeight;
+document.querySelector('.bg-video').style.display = '';
+});
+</script>
+</body>
+</html><!-- File: index.html -->
+<title>Fullscreen Video with Tony Soprano Quote</title>
+<!-- Link to the external stylesheet named "styles.css" in the same project root -->
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<!--
+Fullscreen video element.
+- The video file should be placed inside a folder named "videos" relative to this HTML file.
+- Replace "video.mp4" with your actual filename if different.
+- muted + autoplay + playsinline are used so the video will autoplay on most browsers.
+- loop keeps the video repeating.
+-->
+<video class="bg-video" src="videos/video.mp4" autoplay muted loop playsinline></video>
+
+
+<!-- Overlay container that centers the quote box in the middle of the screen -->
+<div class="overlay">
+<!--
+Quote box:
+- Yellow background, black bold text as requested.
+- The quote below is attributed to Tony Soprano (a fictional character).
+- You can edit the text if you want a different quote or attribution.
+-->
+<div class="quote-box" role="note" aria-label="Tony Soprano quote">
+"Those who want respect, give respect." — Tony Soprano
+</div>
+</div>
+
+
+<!--
+Optional: small script to ensure the video stays sized correctly on orientation change.
+Not strictly necessary, but helpful on some mobile devices.
+-->
+<script>
+// Recompute sizing on orientation change to keep object-fit behavior consistent.
+window.addEventListener('orientationchange', () => {
+document.querySelector('.bg-video').style.display = 'none';
+// Trigger reflow
+void document.querySelector('.bg-video').offsetHeight;
+document.querySelector('.bg-video').style.display = '';
+});
+</script>
+</body>
+</html><!-- File: index.html -->
+<title>Fullscreen Video with Tony Soprano Quote</title>
+<!-- Link to the external stylesheet named "styles.css" in the same project root -->
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<!--
+Fullscreen video element.
+- The video file should be placed inside a folder named "videos" relative to this HTML file.
+- Replace "video.mp4" with your actual filename if different.
+- muted + autoplay + playsinline are used so the video will autoplay on most browsers.
+- loop keeps the video repeating.
+-->
+<video class="bg-video" src="videos/video.mp4" autoplay muted loop playsinline></video>
+
+
+<!-- Overlay container that centers the quote box in the middle of the screen -->
+<div class="overlay">
+<!--
+Quote box:
+- Yellow background, black bold text as requested.
+- The quote below is attributed to Tony Soprano (a fictional character).
+- You can edit the text if you want a different quote or attribution.
+-->
+<div class="quote-box" role="note" aria-label="Tony Soprano quote">
+"Those who want respect, give respect." — Tony Soprano
+</div>
+</div>
+
+
+<!--
+Optional: small script to ensure the video stays sized correctly on orientation change.
+Not strictly necessary, but helpful on some mobile devices.
+-->
+<script>
+// Recompute sizing on orientation change to keep object-fit behavior consistent.
+window.addEventListener('orientationchange', () => {
+document.querySelector('.bg-video').style.display = 'none';
+// Trigger reflow
+void document.querySelector('.bg-video').offsetHeight;
+document.querySelector('.bg-video').style.display = '';
+});
+</script>
+</body>
+</html><html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Fullscreen Video with Tony Soprano Quote</title>
+<!-- Link to the external stylesheet named "styles.css" in the same project root -->
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>

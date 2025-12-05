@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Switcher</title>
+   
+
+    <style>
+        /* --- Fullscreen Video Styling --- */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            background-color: black;
+        }
+
+        video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures full-screen fill */
+        }
+
+        /* --- Text box positioned in the lower third --- */
+        #textBox {
+            position: fixed;
+            bottom: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 20px 40px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            font-size: 1.5em;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Video player -->
+    <video id="videoPlayer" src="videos/graf_Pan.mp4" autoplay muted></video>
+
+    <!-- Text box always visible -->
+    <div id="textBox">Click here to switch videos</div>
+
+    <!-- External JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+</html>
+
+<!-- File: index.html -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fullscreen Video with Tony Soprano Quote</title>
+  <!-- Link to the external stylesheet named "styles.css" in the same project root -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!--
+    Fullscreen video element.
+    - The video file should be placed inside a folder named "videos" relative to this HTML file.
+    - Replace "video.mp4" with your actual filename if different.
+    - muted + autoplay + playsinline are used so the video will autoplay on most browsers.
+    - loop keeps the video repeating.
+  -->
+  <video class="bg-video" src="videos/graf_Pan.mp4" autoplay muted loop playsinline></video>
+
+  <!-- Overlay container that centers the quote box in the middle of the screen -->
+  <div class="overlay">
+    <!--
+      Quote box:
+      - Yellow background, black bold text as requested.
+      - The quote below is attributed to Tony Soprano (a fictional character).
+      - You can edit the text if you want a different quote or attribution.
+    -->
+    <div class="quote-box" role="note" aria-label="Tony Soprano quote">
+      "CRIME AGAINST PROPERTY IS RELATIVELY UNIMPORTANT" 
+    </div>
+  </div>
+
+  <!--
+    Optional: small script to ensure the video stays sized correctly on orientation change.
+    Not strictly necessary, but helpful on some mobile devices.
+  -->
+  <script>
+    // Recompute sizing on orientation change to keep object-fit behavior consistent.
+    window.addEventListener('orientationchange', () => {
+      document.querySelector('.bg-video').style.display = 'none';
+      // Trigger reflow
+      void document.querySelector('.bg-video').offsetHeight;
+      document.querySelector('.bg-video').style.display = '';
+    });
+  </script>
+</body>
+</html>
+
